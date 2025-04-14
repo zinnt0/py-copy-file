@@ -7,14 +7,15 @@ def copy_file(command: str) -> None:
         src = command.split(" ")[1]
         dest = command.split(" ")[2]
     except IndexError:
-        pass
+        print("Invalid command. Usage: cp <source> <destination>")
+        return
     else:
         if src == dest:
             return
         try:
             with open(src, "r")as src_file:
                 content = src_file.read()
-                with open(dest, "a") as dest_file:
+                with open(dest, "w") as dest_file:
                     dest_file.write(content)
         except FileNotFoundError:
-            pass
+            print(f"File {src} not found.")
